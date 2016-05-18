@@ -1,0 +1,62 @@
+def setNumber
+  setA=[1,2,3,4,5,6]
+  setB=[-1,3,7,8,9]
+  puts "set A && B"
+  p setA
+  p setB
+
+  puts "union:"
+  p unionSet setA,setB
+  puts "intersection:"
+p intersectionSet setA,setB
+  puts "Cartesian Porduct:"
+ p productCartesianSet setA,setB
+end
+
+def unionSet a,b
+  sa=a.length
+  sb=b.length
+  union=Array.new
+  for i in 0..sa
+    for j in 0..sb
+        if a[i]!=b[j]  && a[i]!=nil && b[j]!=nil
+        union.push(a[i],b[j])
+        end
+
+    end
+  end
+return union.uniq
+end
+def intersectionSet a,b
+  sa=a.length
+  sb=b.length
+  intersection=Array.new
+  for i in 0..sa
+    for j in 0..sb
+     if a[i]!=nil|| b[j]!=nil
+      if a[i]==b[j]
+        intersection.push(a[i])
+      end
+     end
+    end
+  end
+return intersection
+end
+
+def productCartesianSet a,b
+  sa=a.length
+  sb=b.length
+  pCartesian=Array.new
+  for i in 0..sa
+    for j in 0..sb
+      if a[i]!=b[j] && a[i]!=nil && b[j]!=nil
+        a=[a[i],b[j]]
+        pCartesian.push(a)
+      end
+    end
+  end
+  return pCartesian
+end
+
+#this method call all internal method
+setNumber
