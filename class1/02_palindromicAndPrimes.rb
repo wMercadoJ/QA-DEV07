@@ -8,10 +8,10 @@ class SequenceUnion
 	def print_prime_palindromic_numbers
 		prime=1
 
-		for numPrimos in (1..elementsToPrint)
+		for numPrimes in (1..elementsToPrint)
 			
-			if is_prime?(numPrimos)
-				if is_palindromic?(numPrimos)
+			if is_prime?(numPrimes)
+				if is_palindromic?(numPrimes)
 					arraySequence.push prime	
 				end
 			end
@@ -43,8 +43,7 @@ class SequenceUnion
 			return false
 		end
 	end
-	
 end
-primo= SequenceUnion.new
-primo.print_prime_palindromic_numbers
-p primo.arraySequence
+prime= SequenceUnion.new
+prime.print_prime_palindromic_numbers
+p prime.arraySequence

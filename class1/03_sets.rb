@@ -7,7 +7,7 @@ class Sets
 		fill_sets
 	end
 	def fill_sets
-		@set1=['uno','dos','tres','cuatro','cinco','seis','siete']
+		@set1=['one','two','three','four','five','six','seven']
 		@set2=['red', 'orange', 'yellow', 'green', 'blue', 'brown', 'violet']
 	end
 	def set_union
@@ -21,18 +21,22 @@ class Sets
 	end
 	def set_cartesian_product
 		completeHash=Hash.new
-		@set1.each do |element|
-			
-			@set2.each do|innerElement| 
-				
-				completeHash.store(element, innerElement)
+		completeHash.compare_by_identity
+		i=0
+		while i<@set1.length
+			j=0
+			while j<@set2.length
+				completeHash.store("#{@set1[i]}",@set2[j])
+				j+=1
 			end
+			i+=1
 		end
-		#p completeHash	
-		p @set1.product(@set2)
+		p completeHash
+		#p @set1.product(@set2)
 	end
 	
 end
 
 set=Sets.new
+set.set_union
 set.set_cartesian_product
