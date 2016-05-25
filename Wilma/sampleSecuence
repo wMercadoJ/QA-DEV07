@@ -1,0 +1,26 @@
+class Fibonumber
+def fiboNro n
+   @a=Array.new
+  while s=@a.length<2
+     @a.push(1)
+  end
+   i=2
+  while i <n
+     x=@a[i-1]+@a[i-2]
+     #Sputs x
+     #print @a[i-1]
+     @a.push(x.to_i)
+     i=i+1
+  end
+end
+
+def printFibonnaci
+   p @a
+end
+end
+
+test=Fibonumber.new
+print "What is the last value for this: 1 1 2 3 5 ...>"
+n=gets.chomp.to_i
+test.fiboNro n
+test.printFibonnaci
