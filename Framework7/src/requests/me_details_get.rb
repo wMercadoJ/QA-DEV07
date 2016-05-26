@@ -12,8 +12,8 @@ class MeDetailsGet
 
   def self.validate_me_details(client)
     status_code, me_details = self.call_and_return_response(client)
-    p status_code
-    p me_details
+    status_code
+    me_details
 
     # Validations
   end

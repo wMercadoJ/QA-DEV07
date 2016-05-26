@@ -1,4 +1,4 @@
-require_relative '../data/account'
+require_relative '../../data/account/account'
 class AccountGet
 
   def self.call_and_return_response(client, endpoint, id)

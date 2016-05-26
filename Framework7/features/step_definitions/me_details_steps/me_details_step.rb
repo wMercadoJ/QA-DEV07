@@ -1,12 +1,11 @@
 require_relative '../../../src/helpers/rest_client/api_rest_client'
 require_relative '../../../src/data/me_details'
 
-
 Given(/^I have set a connection to pivotal_tracker API service$/) do
   @client = ApiRestClient.new
 end
 
-When(/^I send a GET request to (.*?)$/) do |end_point|
+When(/^send a GET request to (.*?)$/) do |end_point|
   @status_code, @response = @client.get(end_point)
 end
 
