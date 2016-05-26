@@ -10,4 +10,4 @@ Feature:Create task
     And I should receive a Object details
     Examples:
       | project_id | story_id |description_task|
-      |1595881 | 120232755 |Test test   |
+      |1595959| 120240033 |Test test   |
