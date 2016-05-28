@@ -19,3 +19,10 @@ Then(/^The response should be the next JSON:$/) do |json_expected|
   expect(json_account).to eq(JSON.parse(json_expected))
 end
 
+Given(/^I have the next membership:$/) do |membership|
+  @membership=JSON.parse(membership)
+end
+
+When(/^I send a POST request to \/accounts\/(\d+)\/memberships$/) do |id_account|
+  @id_account=id_account
+end

@@ -20,4 +20,17 @@ Feature: Manage accounts
           "updated_at": "2016-05-24T22:10:41Z"
       }
     """
+    Scenario: Create a new account membership
+      Given I have set a connection to pivotal_tracker API service
+      And I have an account with id 887587
+      And I have the next membership:
+      """
+      {
+      "email":"Lookas@example.com",
+      "initials":"LO",
+      "name":"Lookas possva"
+      }
+      """
+      When I send a POST request to /accounts/887587/memberships
+      Then I expect status code 200
 
