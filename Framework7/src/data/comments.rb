@@ -7,6 +7,7 @@ class Comments < BaseClassForDataClasses
                 :person_id,
                 :created_at,
                 :updated_at
+
   def initialize(values = {})
     super(values)
   end
