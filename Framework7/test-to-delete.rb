@@ -4,6 +4,4 @@ require_relative '../Framework7/src/requests/account/account_get'
 p client = ApiRestClient.new
 
 #p MeDetailsGet.validate_me_details(client)
-status, account= AccountGet.validate_endpoint(client,'accounts','887587')
-a= account.to_hash
-p status,a.to_json
+p AccountGet.validate_endpoint(client,'accounts','887587')
