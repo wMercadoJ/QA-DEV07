@@ -1,2 +1,5 @@
 .idea/
 Framework7/Gemfile.lock
+Framework7/test-to-delete.rb
+Framework7/features/feature_definitions/me_details_feature/me_details.feature
+Framework7/features/step_definitions/me_details_steps/me_details_step.rb
