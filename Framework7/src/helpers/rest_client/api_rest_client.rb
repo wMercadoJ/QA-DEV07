@@ -5,6 +5,7 @@ require 'json/ext'
 require_relative '../config/configuration'
 require_relative '../data_helper'
 
+# noinspection ALL
 class ApiRestClient
 
   def initialize
@@ -19,6 +20,7 @@ class ApiRestClient
   end
 
   # Do one of the above.
+  # noinspection RubyArgCount,RubyArgCount,RubyArgCount
   def client_method(rest_method, url_elements, query_elements = [], parameters = nil)
     url = File.join(@base_url, *url_elements)
     url = URI.escape(url)
@@ -52,6 +54,7 @@ class ApiRestClient
     # Don't parse as Json if empty.
     return response if response == ''
     begin
+      # noinspection RubyArgCount
       parser = JSON::Ext::Parser.new(response)
       json = parser.parse
       json = DataHelper.rehash_to_symbol_keys(json)
