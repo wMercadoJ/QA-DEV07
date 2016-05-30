@@ -5,6 +5,7 @@ require 'json/ext'
 require_relative '../config/configuration'
 require_relative '../data_helper'
 
+# noinspection ALL
 class ApiRestClient
 
   def initialize
@@ -12,13 +13,14 @@ class ApiRestClient
     @base_url = @config.get('url')
     @time_out = @config.get('time_out')
 
-    @account_name = @config.get('account/name')
-    @password = @config.get('account/password')
+    @token = @config.get('account/token')
+    # @password = @config.get('account/password')
 
     nil
   end
 
   # Do one of the above.
+  # noinspection RubyArgCount,RubyArgCount,RubyArgCount
   def client_method(rest_method, url_elements, query_elements = [], parameters = nil)
     url = File.join(@base_url, *url_elements)
     url = URI.escape(url)
@@ -32,26 +34,27 @@ class ApiRestClient
     args.store(:method, rest_method)
     args.store(:url, url)
     args.store(:timeout, @time_out)
-    headers = {
-        :content_type => 'application/json',
-    }
+    # args.store(:proxy, 'http://172.20.240.5:8080')
+    headers = {'X-TrackerToken' => @token, 'Content-Type' => 'application/json'}
     if parameters.nil?
       parameters_json = nil
     else
       parameters_json = parameters.to_json
     end
-    args.store(:user, @account_name)
-    args.store(:password, @password)
+    # args.store(:user, @account_name)
+    # args.store(:password, @password)
     args.store(:payload, parameters_json)
     args.store(:headers, headers)
 
     # noinspection RubyResolve
     args.store(:verify_ssl, OpenSSL::SSL::VERIFY_NONE)
 
+    RestClient.proxy = "http://172.20.240.5:8080"
     response = RestClient::Request.execute(args)
     # Don't parse as Json if empty.
     return response if response == ''
     begin
+      # noinspection RubyArgCount
       parser = JSON::Ext::Parser.new(response)
       json = parser.parse
       json = DataHelper.rehash_to_symbol_keys(json)

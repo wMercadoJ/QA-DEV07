@@ -8,7 +8,7 @@ Feature: Final Project for Ruby class
     And it should have the field "Id" and "name" containing the value <idProjects> and <name>
     Examples:
       | idProjects | name |
-      | 1595901     |   test  |
+      | 1598453     |   getProyect  |
   @functional
   Scenario Outline: Create Tasks new Project
   Given I have set a connection to pivotal_tracker API service
@@ -18,7 +18,7 @@ Feature: Final Project for Ruby class
 
     Examples:
     | nameProject |
-    | Project_Home6 |
+    | Project_Home12 |
 
   @SmokeTest
   Scenario Outline: GET request
@@ -27,7 +27,7 @@ Feature: Final Project for Ruby class
     Then I expect Status the projects code 200
   Examples:
     | idProjects |
-    | 1595901    |
+    | 1598453    |
   @SmokeTest
   Scenario Outline: : POST request with params
     Given I have set a connection to pivotal_tracker API service
@@ -36,8 +36,8 @@ Feature: Final Project for Ruby class
 
   Examples:
   | nameProject |
-  | Project_Home7 |
-  | Project_Home8 |
+  | Project_Home9 |
+  | Project_Home10 |
 
   @SmokeTest
   Scenario Outline: : Delete request with params
@@ -47,7 +47,8 @@ Feature: Final Project for Ruby class
 
     Examples:
     |id_project|
-    |1598003   |
+    |1598475  |
+
 
 
 
