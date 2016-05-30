@@ -1,33 +1,57 @@
 require_relative '../../../src/helpers/rest_client/api_rest_client'
-require_relative '../../../src/data/proyect_details'
+require_relative '../../../src/data/project_details'
+require_relative '../../../../Framework7/src/requests/project_details_get'
 
 
+Then(/^I expect Status the projects code (\d+)$/) do |http_code|
 
-
-And(/^I expect JSON for the Item equal to$/) do
-  me_details = ProyectDetails.new(@response)
-  expect(me_details).to eql (ProyectDetails.new)
-end
-
-Then(/^I expect Status the proyects code (\d+)$/) do |http_code|
   expect(@status_code.to_s).to eql(http_code.to_s)
 end
 
-And(/^I expects proyec Details Object$/) do
-  me_details = ProyectDetails.new(@response)
-  expect(me_details).to eql (ProyectDetails.new)
+And(/^I expects projec Details Object$/) do
+  me_details = ProjectDetails.new(@response)
+  expect(me_details).to eql (ProjectDetails.new)
 end
 
-When(/^I send a GET request the proyects to (\/projects\/.*)$/) do |end_point|
+When(/^I send a GET request the projects to (\/projects\/.*)$/) do |end_point|
 
   @status_code, @response = @client.get(end_point)
 end
 
-Given(/^I have set a connection proyect to pivotal_tracker API service$/) do
+Given(/^I have set a connection project to pivotal_tracker API service$/) do
   @client = ApiRestClient.new
 end
 
-When(/^I send a POST request to (\/\D+) with json$/) do |end_point, text|
- text = { :name => "Konata Izumi" }
-  @status_code, @response = @client.post(end_point, [],text)
+
+And(/^it should have the field "([^"]*)" and "([^"]*)" containing the value (.*) and (.*)$/) do |arg1, arg2, idProjects, name|
+  MeDetailsGet.validate_project_details(@client)
+  project_details = ProjectDetails.new(@response)
+
+  expect(project_details.id).to eql(idProjects.to_i)
+  expect(project_details.name).to eql(name.to_s)
+end
+
+
+When(/^I a Delete the project (.*) in request the projects to (\/projects)$/) do |id_projects, end_point|
+  @status_code, @response = @client.delete(end_point, [], id_projects)
+end
+
+When(/^I send a POST request to (\/projects) with name project (.*)$/) do |end_point, nameProject|
+  json = { :name => nameProject, :public => true }
+  @status_code, @response = @client.post(end_point, [], json)
+  @end_point_post = end_point
+end
+
+When(/^I a Delete the project  in request the projects to (\/projects\/.*)$/) do |end_point|
+
+  @status_code, @response = @client.delete(end_point)
+
+end
+
+And(/^I expect JSON for the name project equal a (.*)$/) do |name_project|
+  MeDetailsGet.validate_project_details(@client)
+  project_details = ProjectDetails.new(@response)
+  expect(project_details.name).to eql(name_project.to_s)
+  # @end_point_post = @end_point_post +'/'+ project_details.id
+  # @client.delete(@end_point_post)
 end

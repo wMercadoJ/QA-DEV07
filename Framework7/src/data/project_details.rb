@@ -1,4 +1,5 @@
-class ProyectDetails < BaseClassForDataClasses
+require_relative 'base_class_for_data_classes'
+class ProjectDetails < BaseClassForDataClasses
   attr_accessor :id,
                 :kind,
                 :name,
