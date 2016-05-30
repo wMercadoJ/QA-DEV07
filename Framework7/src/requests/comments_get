@@ -1,0 +1,40 @@
+require_relative '../data/comments'
+
+class GetComments
+
+  def self.call_and_return_response(client)
+    array_comments = Array.new
+    url_elements = %w/
+      comments
+    /
+    status_code, response_body = client.get(url_elements)
+    response_body.each do |comment|
+      new_comment = Comments.new(comment)
+      array_comments.push(new_comment)
+    end
+    #me_details = MeDetails.new(response_body)
+    [status_code, array_comments]
+  end
+
+  def self.validate_get_comments(client)
+    status_code, comments_created = self.call_and_return_response(client)
+    p status_code
+    p comments_created
+
+    # Validations
+    status = true
+    comments=Comments.new(client)
+    hash = comments.to_hash
+    comments_created
+    hash.each_pair do |key,value|
+      value_created = comments_created.fetch(key)
+      value = value_created
+      if value!=value_created
+        status=false
+        break
+      end
+    end
+    expect(true).to eql (status)
+  end
+
+end
