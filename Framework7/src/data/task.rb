@@ -12,9 +12,6 @@ class TaskDetails < BaseClassForDataClasses
                 @hash = Hash.new
   def initialize(values = {})
     super(values)
-    #values.each do |key, value|
-    #self.send("#{key}=", value.is_a?(Array) ? value.join(',') : value )
-    #end
   end
 
   def to_hash

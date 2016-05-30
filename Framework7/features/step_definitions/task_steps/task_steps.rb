@@ -29,8 +29,7 @@ end
 Then(/^I should receive a Object details$/) do
 
   task_details = TaskDetails.new(@response)
- var=task_details.to_hash['kind']
+  var = task_details.to_hash['kind']
   expect(var).to eql ('task')
 end
 
-*,172.20.208.126,172.20.208.235,PRIMARYMS,SECONDARYMSS,PRIMARYMS,ASHE,SECONDARYMS,ALEHKMS,CLEANMS,172.20.208.16,172.20.208.150,172.20.208.151,172.20.208.152,JAMISH,REITO,CARLOS,FLORMS,QADEV07LRN,QADEV07RVL2016,ROIGREMS,FUITMS,172.20.208.12,172.20.208.200,172.20.208156,GREYMS,JULMS,JORGEMS,PRIMARYMS,KEEPMS,O
