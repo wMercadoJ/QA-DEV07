@@ -2,10 +2,6 @@ require_relative '../../../src/requests/account/account_get'
 require_relative '../../../src/data/account/account'
 require_relative '../../../src/helpers/rest_client/api_rest_client'
 
-Given(/^I have set a connection to pivotal_tracker API service$/) do
-  @client = ApiRestClient.new
-end
-
 
 Given(/^I have an (?:.*?) with id (\d+)$/) do |id_account|
   @id_account=id_account
@@ -31,7 +27,22 @@ Then(/^The accounts? should have the nex attributes?:$/) do |attribute_types|
     attribute_hash[row['attribute']]= row['type']
   end
 
-  validate_attribute_types(@account_object,attribute_hash)
+  if   @account_object.kind_of?(Array) then
+    @account_object.length.times do |index|
+      validate_attribute_types(@account_object[index],attribute_hash)
+    end
+
+  else
+
+    if @account_object.kind_of?(Array) then
+        @account_object.length.times do |index|
+        validate_attribute_types(@account_object[index],attribute_hash)
+      end
+
+    else
+      validate_attribute_types(@account_object,attribute_hash)
+    end
+  end
 end
 #when i implemented the next method on AccountGet class i get the next error:
 #undefined method `expect' for AccountGet:Class (NoMethodError)
