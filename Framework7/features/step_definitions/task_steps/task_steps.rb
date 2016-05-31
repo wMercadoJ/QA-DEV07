@@ -17,6 +17,13 @@ Given(/^I have (.*?) the task name$/) do|description_task|
     @description_task = description_task
 end
 
+Given(/I have (.*?) name, (.*?) complete, (.*?) position of a new task$/) do |description_task, complete_boolean, position_task|
+  @description_task = description_task
+  @complete_boolean = complete_boolean
+  @position_task = position_task
+
+end
+
 When(/^I send my (POST|GET) request to (.*)/) do | method_task, end_point|
   @method_task=method_task
   if @method_task == 'GET'
@@ -33,7 +40,15 @@ end
 
 Then(/^I should receive a Object details$/) do
 
-  task_details = TaskDetails.new(@response)
-  var = task_details.to_hash['kind']
-  expect(var).to eql ('task')
+  @task_details = TaskDetails.new(@response)
+  @var = @task_details.to_hash['kind']
+  expect(@var).to eql ('task')
 end
+
+Then(/^I should receive all properties of Task$/) do
+  #if task_details != ''
+
+  #end
+
+end
+
