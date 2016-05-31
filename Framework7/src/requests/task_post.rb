@@ -9,8 +9,8 @@ class TaskPost
 
   def self.validate_task_all_details(client, end_point, project_id, story_id, description, complete , position)
     status_code, task_details = self.call_and_return_response_task_all_details(client, end_point, description, complete , position)
-     status_code
-     task_details
+   status_code
+   task_details
 
     # Validations
   end
