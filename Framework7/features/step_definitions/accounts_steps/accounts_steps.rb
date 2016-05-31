@@ -2,10 +2,6 @@ require_relative '../../../src/requests/account/account_get'
 require_relative '../../../src/data/account/account'
 require_relative '../../../src/helpers/rest_client/api_rest_client'
 
-Given(/^I have set a connection to pivotal_tracker API service$/) do
-  @client = ApiRestClient.new
-end
-
 
 Given(/^I have an (?:.*?) with id (\d+)$/) do |id_account|
   @id_account=id_account

@@ -4,7 +4,7 @@ Given(/^I have set another connection into pivotal_tracker API service$/) do
   @client = ApiRestClient.new
 end
 When(/^I send a Put request to (.*)$/) do |end_point|
-  @status_request, @response = @client.put(end_point, [], {'text': 'updating a comment'})
+  @status_request, @response = @client.put(end_point, [], "{'text': 'updating a comment'}")
 end
 Then(/^I expect Status code of put request (\d+)$/) do |status|
   expect(status.to_i).to eql(@status_request)
