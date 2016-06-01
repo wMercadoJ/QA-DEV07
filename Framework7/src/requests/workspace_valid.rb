@@ -34,54 +34,68 @@ class WorkspaceValid
 
      # Validations
 
-    ((self.validate_workspace_values(workspace_get)) == (true)) ? (p "Valid json") : (p "Invalid json")
+    #((self.validate_workspace_values(workspace_get)) == (true)) ? (p "Valid json") : (p "Invalid json")
 
   end
 
-    def self.validate_workspace_values(workspace_get)
-      workspace_get_values = workspace_get
+    def self.validate_workspace_values(workspace_to_valid)
+      workspace_values = workspace_to_valid
 
-      @failsArray = Array.new
+      failHash = Hash.new
 
-      workspace_get_values.each do |objectHash|
+      (!(self.myKind(workspace_values[:kind])))?(failHash[:kind] = 'false'):()
+      (!(self.myIdWorkspace(workspace_values[:id])))?(failHash[:id] = 'false'):()
+      (!(self.myNameWorkSpace(workspace_values[:name])))?(failHash[:name] = 'false'):()
+      (!(self.myPersonId(workspace_values[:person_id])))?(failHash[:person_id] = 'false'):()
+      (!(self.myProjectsIds(workspace_values[:project_ids])))?(failHash[:project_ids] = 'false'):()
 
-        (!(self.myKind(objectHash['kind'])))?(@failsArray.push(objectHash['kind'])):()
-        (!(self.myIdWorkspace(objectHash['id'])))?(@failsArray.push(objectHash['id'])):()
-        (!(self.myNameWorkSpace(objectHash['name'])))?(@failsArray.push(objectHash['name'])):()
-        (!(self.myPersonId(objectHash['person_id'])))?(@failsArray.push(objectHash['person_id'])):()
-        (!(self.myProjectsIds(objectHash['project_ids'])))?(@failsArray.push(objectHash['project_ids'])):()
-
-         end
+    validate_hash_fail(failHash)
     end
 
-  def self.myKind(kind)
+  def self.validate_hash_fail(failHash)
+    my_fails_hash = Hash.new(failHash)
 
-    (/[a-zA-Z0-9]/.match(kind))?(return true):(return false)
-
+     # if my_fails_array.empty?
+     #   return true
+     # else
+     #   return false
+     #   #envio de hash al reporte
+     # end
+my_fails_hash
   end
 
-  def self.myIdWorkspace(id)
+      def self.myKind(kind)
 
-    (/[a-zA-Z0-9]/.match(id))?(return true):(return false)
+         (kind.kind_of?(String) && kind.length <= 25)?(return true):(return false)
 
-  end
+      end
 
-  def self.myNameWorkSpace(name)
+      def self.myIdWorkspace(id)
 
-    (/[a-zA-Z0-9]/.match(name))?(return true):(return false)
+        (id.kind_of?(Integer) && id.to_s.length <= 7)?(return true):(return false)
 
-  end
+      end
 
-  def self.myPersonId(person_id)
+      def self.myNameWorkSpace(name)
 
-    (/[a-zA-Z0-9]/.match(person_id))?(return true):(return false)
+        (name.kind_of?(String) && name.length <= 25)?(return true):(return false)
 
-  end
+      end
 
-  def self.myProjectsIds(project_id)
+      def self.myPersonId(person_id)
 
-    (/[a-zA-Z0-9]/.match(project_id))?(return true):(return false)
+        (person_id.kind_of?(Integer) && person_id.to_s.length <= 7)?(return true):(return false)
 
-  end
+      end
+
+      def self.myProjectsIds(project_id)
+
+        @flag = true
+        project_id.each do |value|
+        (value.kind_of?(Integer) && value.to_s.length <= 7)?(@flag = true):(@flag = false)
+        end
+
+        return @flag
+      end
 
   end
