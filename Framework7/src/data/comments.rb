@@ -1,4 +1,5 @@
 require_relative 'base_class_for_data_classes'
+require_relative '../../src/requests/validate'
 class Comments < BaseClassForDataClasses
   attr_accessor :Kind,
                 :id,
@@ -12,42 +13,27 @@ class Comments < BaseClassForDataClasses
     @values = values
   end
 
-  def is_integer_value(integer_value)
-
-    integer_value.is_a?Integer
-
-=begin
-    if integer_value > 0 then
-      return true
-    else
-      return false
-    end
-=end
-  end
-
-  def is_string_value(string_value)
-
-    return string_value.kind_of?String
-  end
-
   def validate_id_parameter
-    return is_integer_value(@values[:id])
+    Validate.new.is_integer_value(@values[:id])
   end
 
   def validate_person_id_parameter
-    return is_integer_value(@values[:person_id])
+    Validate.new.is_integer_value(@values[:person_id])
   end
 
   def validate_story_id_parameter
-    return is_integer_value(@values[:story_id])
+    Validate.new.is_integer_value(@values[:story_id])
   end
 
-  def validate_Kind_parameter
-    p @values[:kind]
-    return is_string_value(@values[:kind])
+  def validate_kind_parameter
+    Validate.new.is_string_value(@values[:kind])
   end
 
   def validate_text_parameter
-    return is_string_value(@values[:text])
+    Validate.new.is_string_value(@values[:text])
+  end
+
+  def validate_length_text_parameter(min_length_character, max_length_character)
+    Validate.new.text_is_between_a_range(@values[:text], min_length_character, max_length_character)
   end
 end
