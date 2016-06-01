@@ -28,11 +28,12 @@ end
 Then(/^I expect (true|false) as result of fields? validations?$/) do |is_validated|
   if @account_object.kind_of?(Array) then
     @account_object.length.times do |index|
-      expect(@account_object[index].validate_field).to be is_validated.to_bool
+      expect(@account_object[index].validate_field).to be Account::BOOLEAN_VALUES.fetch(is_validated)
     end
   else
-    expect(@account_object.validate_field).to be is_validated.to_bool
+    expect(@account_object.validate_field).to be Account::BOOLEAN_VALUES.fetch(is_validated)
   end
+
 end
 
 

@@ -10,6 +10,7 @@ class Account < BaseClassForDataClasses
                 :kind,
                 :days_left
 
+  BOOLEAN_VALUES={'true'=>true,'false'=>false}
 
   def initialize(values = {})
     super(values)
