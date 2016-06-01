@@ -12,7 +12,7 @@ Feature:Create task
 
     Examples:
       | project_id | story_id |description_task|
-      |1595959| 120240033 |Test test2   |
+      |1595959| 120240033|Test_test2|
 
   Scenario Outline: Create task in a story with all properties
 
@@ -25,4 +25,5 @@ Feature:Create task
 
     Examples:
       | project_id | story_id |description_task|complete|position|
+      |1595959| 120240033 |Test test test||7|
       |1595959| 120240033 |Test test test|true|7|

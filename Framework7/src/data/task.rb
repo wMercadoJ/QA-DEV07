@@ -1,6 +1,8 @@
 require_relative 'base_class_for_data_classes'
 
 class TaskDetails < BaseClassForDataClasses
+  TYPE_VALUE = ['task', 'story']
+  TYPE_BOOLEAN = ['false', 'true']
   attr_accessor :complete,
                 :description,
                 :id,
@@ -9,8 +11,7 @@ class TaskDetails < BaseClassForDataClasses
                 :story_id,
                 :created_at,
                 :updated_at
-                @type_value = ['task', 'story']
-                @type_boolean = ['false', 'true']
+
                 @hash = Hash.new
   def initialize(values = {})
     super(values)
@@ -23,18 +24,15 @@ class TaskDetails < BaseClassForDataClasses
   def field_valid(field, value)
     case
       when field == 'kind'
-    p    @type_value.include?(value)
+        TYPE_VALUE.include?(value)
       when field == 'description'
-        Validate.is_integer(value, 1000)
-     p   value.kind_of?(String) && value.length < 1000
+        value.kind_of?(String) && value.length < 1000
       when field == 'id'
-        Validate.is_integer(value, 8)
-        value.kind_of?(Integer) && value.length > 0 && value.length < 9
+        value.kind_of?(Integer) && value.to_s.length > 0 && value.to_s.length < 9
       when field == 'complete'
-        @type_boolean.include?(value)
+        TYPE_BOOLEAN.include?(value)
       when field == 'position'
-        Validate.is_integer(value, 4)
-        value.kind_of?(Integer) && value.length > 0 && value.length < 4
+        value.kind_of?(Integer) && value.to_s.length > 0 && value.to_s.length < 1000
       else
         false
     end
