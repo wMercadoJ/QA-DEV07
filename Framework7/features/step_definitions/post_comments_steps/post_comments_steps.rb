@@ -1,3 +1,4 @@
+=begin
 require_relative '../../../src/helpers/rest_client/api_rest_client'
 
 Given(/^I have set another connection to pivotal_tracker API service$/) do
@@ -21,3 +22,4 @@ end
 When(/^I send a Post request to (\/projects\/1596603\/stories\/120320037\/comments) with the previous text$/) do |end_point|
   @status_request, @response = @client.post(end_point, [], {'text': @text_comment})
 end
+=end

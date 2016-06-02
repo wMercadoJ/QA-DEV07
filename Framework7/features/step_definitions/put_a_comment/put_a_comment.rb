@@ -1,3 +1,4 @@
+=begin
 require_relative '../../../src/helpers/rest_client/api_rest_client'
 
 Given(/^I have set another connection into pivotal_tracker API service$/) do
@@ -24,3 +25,5 @@ end
 And(/^I expect True as an answer of the updated comment$/) do
   expect(@updated_text_comment).to eql(@response[:text])
 end
+
+=end
