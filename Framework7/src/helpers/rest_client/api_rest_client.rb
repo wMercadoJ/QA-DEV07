@@ -11,9 +11,9 @@ class ApiRestClient
     @config = Configuration.new
     @base_url = @config.get('url')
     @time_out = @config.get('time_out')
+
     @token = @config.get('account/token')
-    @account_name = @config.get('account/name')
-    @password = @config.get('account/password')
+    # @password = @config.get('account/password')
 
     nil
   end
@@ -32,24 +32,22 @@ class ApiRestClient
     args.store(:method, rest_method)
     args.store(:url, url)
     args.store(:timeout, @time_out)
-    headers = {
-        'content_type' => 'application/json',
-        'X-TrackerToken' => @token
-    }
+    # args.store(:proxy, 'http://172.20.240.5:8080')
+    headers = {'X-TrackerToken' => @token, 'Content-Type' => 'application/json'}
     if parameters.nil?
       parameters_json = nil
     else
       parameters_json = parameters.to_json
     end
-    args.store(:user, @account_name)
-    args.store(:password, @password)
+    # args.store(:user, @account_name)
+    # args.store(:password, @password)
     args.store(:payload, parameters_json)
     args.store(:headers, headers)
 
     # noinspection RubyResolve
     args.store(:verify_ssl, OpenSSL::SSL::VERIFY_NONE)
-    # uncomment the next line if exist proxy
-    #RestClient.proxy = "http://172.20.240.5:8080"
+
+    RestClient.proxy = "http://172.20.240.5:8080"
     response = RestClient::Request.execute(args)
     # Don't parse as Json if empty.
     return response if response == ''
