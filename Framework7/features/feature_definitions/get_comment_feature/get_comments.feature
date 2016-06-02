@@ -44,9 +44,17 @@ Feature: Get comments from a Story
       | kind             |
       | text             |
 
+  @validating_created_at_value @validating_updated_at_value @get_comment
+  Scenario Outline: verifying that the created and updated value are correct
+    When I send a GET request to /projects/1596603/stories/120320037/comments/135075719
+    And I validate <date_parameter> parameter of a comment
+    Then I should receive true as an answer for <date_parameter> values
+    Examples:
+      | date_parameter |
+      | created_at     |
+      | updated_at     |
 
-
-  @comment_has_2000_characters @get_comment
+  @characters_length_comment @get_comment
   Scenario: verify that the comment text has 2000 characters
     When I send a GET request to /projects/1596603/stories/120320037/comments/135075719
     And I validate that text comment has between 1 and 2000 characters

@@ -36,4 +36,8 @@ class Comments < BaseClassForDataClasses
   def validate_length_text_parameter(min_length_character, max_length_character)
     Validate.new.text_is_between_a_range(@values[:text], min_length_character, max_length_character)
   end
+
+  def validate_date_parameter(date)
+    Validate.new.is_a_date(@values[date])
+  end
 end

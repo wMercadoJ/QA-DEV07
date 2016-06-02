@@ -34,6 +34,10 @@ And(/^I validate (\w+) parameter of a comment$/) do |integer_value|
       @answer_string_parameter = @individual_json.validate_kind_parameter
     when 'text'
       @answer_string_parameter = @individual_json.validate_text_parameter
+    when 'created_at'
+      @answer_date_parameter = @individual_json.validate_date_parameter(:created_at)
+    when 'updated_at'
+      @answer_date_parameter = @individual_json.validate_date_parameter(:updated_at)
     else
       break
   end
@@ -57,7 +61,7 @@ end
 
 And(/^I validate that text comment has between (\d+) and (\d+) characters$/) do |minimum_limit, maximum_limit|
   @individual_json = Comments.new(@json)
-  @answer_text_length= @individual_json.validate_length_of_text_parameter(minimum_limit.to_i, maximum_limit.to_i)
+  @answer_text_length= @individual_json.validate_length_text_parameter(minimum_limit.to_i, maximum_limit.to_i)
 end
 
 Then(/^I should receive true as an answer for (\w+) values/) do |type_of_answer|
@@ -66,13 +70,15 @@ Then(/^I should receive true as an answer for (\w+) values/) do |type_of_answer|
       expect(true).to eql(@answer_integer_final)
     when 'string'
       expect(true).to eql(@answer_string_parameter)
-
     when 'text_length'
       expect(true).to eql(@answer_text_length)
+    when 'created_at'
+      expect(true).to eql(@answer_date_parameter)
+    when 'updated_at'
+      expect(true).to eql(@answer_date_parameter)
     else
       break
   end
-
 end
 
 
