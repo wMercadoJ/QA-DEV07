@@ -46,5 +46,27 @@ class TaskDetails < BaseClassForDataClasses
     end
     validate_status
   end
+  def boolean_data data
+    (data == '')? (return nil):()
+    (data == 'true')? (return true):()
+    (data == 'false')? (return false):()
+  end
 
-end
+  def store_hash_data description, complete, position
+    @name_task = description
+    @boolean = complete
+    @position = position
+    @hash_json = Hash.new
+
+    case
+      when !@name_task.nil?
+        @hash_json.store('description',@name_task)
+      when !@boolean.nil?
+        @hash_json.store('complete',@boolean)
+      when !@position.nil?
+        @hash_json.store('position',@position)
+    end
+    return @hash_json
+  end
+
+  end
