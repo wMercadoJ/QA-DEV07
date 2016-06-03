@@ -82,4 +82,12 @@ Then(/^I should receive true as an answer for (\w+) values/) do |type_of_answer|
 end
 
 
+When(/^I send a GET request to (\/projects\/1596603\/stories\/120320037\/comments\/135075719)$/) do
+  
+end
+
+Then(/^I expect bad request (\d+)$/) do |arg1|
+
+end
+
 
