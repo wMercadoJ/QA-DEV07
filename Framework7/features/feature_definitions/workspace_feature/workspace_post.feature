@@ -10,7 +10,7 @@ Feature: Final Project for Api Test
 
     Examples:
     |name|id_project|
-    |work_daniel745|[]|
+    |danielsworkspace000|[]|
 
   @Smock_test
   Scenario Outline: Status code 200 when create new Workspace with name and projects id
@@ -21,4 +21,4 @@ Feature: Final Project for Api Test
 
     Examples:
       |name|id_project|
-      |work_daniel68887|[1595977]|
+      |danielsworkspace001|[1601125]|

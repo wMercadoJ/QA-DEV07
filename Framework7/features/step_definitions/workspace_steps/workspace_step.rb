@@ -34,6 +34,7 @@ And(/^I send name (.*) and id_project (.*)$/) do |name, id_project|
 end
 
 Then(/^I expect Status code (\d+) of workspace$/) do |http_code|
+  p  @status_code
     expect(@status_code.to_s).to eql(http_code.to_s)
 end
 
