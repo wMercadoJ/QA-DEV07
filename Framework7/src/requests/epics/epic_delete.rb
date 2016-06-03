@@ -8,7 +8,3 @@ class EpicDelete
   end
 
 end
-require_relative '../../helpers/rest_client/api_rest_client'
-client=ApiRestClient.new
-
-p EpicDelete.epic_delete(client,'projects/1600911/epics/2530409',[],nil)

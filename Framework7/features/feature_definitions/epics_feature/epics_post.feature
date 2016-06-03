@@ -6,14 +6,14 @@ Feature: post epics
 
   Background: set connection to pivotal tracker API REST
     Given I have set a connection to pivotal_tracker API service
-  @smoke_test
+  @epics @smoke_test
   Scenario: create a new epic
     Given I have a project created on pivotal tracker
     And I have the id of that project
     And I have the next epic as JSON:
     """
     {
-      "name":"example epic by api test"
+      "name":"Post example 1233"
     }
     """
     When I send an epic POST request to /projects/1600911/epics endpoint

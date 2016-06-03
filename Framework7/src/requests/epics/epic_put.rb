@@ -5,8 +5,3 @@ class EpicPut
     [status_code, response]
   end
 end
-
-require_relative '../../helpers/rest_client/api_rest_client'
-client=ApiRestClient.new
-
-p EpicPut.epic_put(client,'projects/1600911/epics/2530343',[],{:name=>'new henry'})
