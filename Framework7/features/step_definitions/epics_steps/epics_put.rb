@@ -16,5 +16,5 @@ end
 
 Then(/^I should delete the epic created$/) do
   @epic_id_to_delete=@response[:id]
-  step 'I send an epic DELETE request to epics endpoint'
+  EpicDelete.epic_delete(@client,"projects/#{@id_project}/epics/#{@epic_id_to_delete}",[],nil)
 end
