@@ -10,7 +10,7 @@ class AccountGet
     accounts_array=Array.new
 
     JSON.parse(response_body).each_with_index do |key|
-      accounts_array.push(Account.new(key).to_hash)
+      accounts_array.push(Account.new(key))
     end
     [status_code, accounts_array]
   end
@@ -19,17 +19,13 @@ class AccountGet
         endpoint,
         id,
     ]
-
     status_code, response_body = client.get(url_elements)
-    account = Account.new(response_body).to_hash
+    account = Account.new(response_body)
     [status_code, account]
   end
   def self.validate_endpoint(client, endpoint, id='')
-
     status_code, account = id==''? self.get_accounts(client, endpoint): self.get_account_by_id(client, endpoint, id)
     [status_code, account]
-
-    # Validations
   end
 
 end
