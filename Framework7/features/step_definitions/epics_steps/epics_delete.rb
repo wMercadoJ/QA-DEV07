@@ -13,6 +13,5 @@ When(/^I send an epic DELETE request to epics? endpoint$/) do
 end
 
 Then(/^I expect a delete status code (\d+)$/) do |http_code|
-  http_code=''
-  expect(@status_code.to_s).to eq(http_code)
+  expect(@status_code.to_i).to eq(http_code.to_i)
 end
