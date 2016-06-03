@@ -1,5 +1,5 @@
 require_relative 'base_class_for_data_classes'
-require_relative '../../src/requests/validate'
+require_relative '../helpers/validate'
 class Comments < BaseClassForDataClasses
   attr_accessor :Kind,
                 :id,
