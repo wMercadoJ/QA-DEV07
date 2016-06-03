@@ -1,9 +1,9 @@
 @stories
   Feature: Stories
 
-    @smoke_testing_stories
+    @smoke_test
     Scenario Outline: New Story by name
-      Given I have set connection to pivotal tracker API service
+      Given I have set a connection to pivotal_tracker API service
         And I have <project_id> of pivotal tracker project to Stories endpoint
       When I have the <name_story> name of new story
         And I send a POST request to /projects/<project_id>/stories to Stories endpoint
@@ -12,4 +12,4 @@
 
       Examples:
         | project_id |name_story  |
-        | 1595957    |story_test_new  |
+        | 1595957    |story_test_qadev07  |

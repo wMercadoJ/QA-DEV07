@@ -1,4 +1,3 @@
-=begin
 require_relative '../../../src/helpers/rest_client/api_rest_client'
 #require_relative '../../../src/data/story'
 
@@ -18,4 +17,3 @@ end
 Then(/^I should expect the status code (\d+) to Story PUT endpoint$/) do |http_code|
   expect(@status_code.to_s).to eql(http_code.to_s)
 end
-=end
