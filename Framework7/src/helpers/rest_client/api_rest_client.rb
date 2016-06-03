@@ -33,7 +33,7 @@ class ApiRestClient
     args.store(:url, url)
     args.store(:timeout, @time_out)
     headers = {
-        'content_type' => 'application/json',
+        'content-type' => 'application/json',
         'X-TrackerToken' => @token
     }
     if parameters.nil?
