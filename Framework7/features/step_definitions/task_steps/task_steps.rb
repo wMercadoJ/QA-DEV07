@@ -18,14 +18,15 @@ Given(/^I have (.*?) the task name$/) do|description_task|
 end
 
 Given(/I have (.*?) name, (.*?) complete, (.*?) position of a new task$/) do |description_task, complete_boolean, position_task|
-  @description_task = description_task
-  @complete_boolean = complete_boolean
+  @description_task = description_task.to_s
+  @bool = TaskDetails.new
+  @complete_boolean = @bool.boolean_data(complete_boolean)
   @position_task = position_task.to_i
 
 end
 
 When(/^I send my (POST|GET) request to (.*)/) do | method_task, end_point|
-p  @method_task=method_task
+  @method_task=method_task
   if @method_task == 'GET'
    @status2,@response2 = @client.get(end_point)
     jsonArray = @response2
@@ -36,21 +37,20 @@ p  @method_task=method_task
     case
       when !@description_task.nil? && !@complete_boolean.nil? &&  !@position_task.nil?
         @status,@response = @client.post(end_point,[],{:description => @description_task, :complete => @complete_boolean, :position => @position_task})
-      when !@description_task.nil? && !@complete_boolean.nil?
+      when !@description_task.nil? && !@complete_boolean.nil? &&  @position_task.nil?
         @status,@response = @client.post(end_point,[],{:description => @description_task, :complete => @complete_boolean})
-      when !@description_task.nil? && !@complete_boolean.nil? &&  !@position_task.nil?
+      when !@description_task.nil? && @complete_boolean.nil? &&  !@position_task.nil?
         @status,@response = @client.post(end_point,[],{:description => @description_task, :position => @position_task})
-      when !@description_tas.nil?
+      when !@description_tas.nil? && @complete_boolean.nil? &&  @position_task.nil?
         @status,@response = @client.post(end_point,[],{:description => @description_tas})
-      when @description_task.nil?
-        false
+      else; false
     end
 
     end
 end
 
 Then(/^I should receive a Object details$/) do
-p @response
+ @response
   @task_detail = TaskDetails.new(@response)
   status = @task_detail.validate_fields
   expect(status).to eql(false)
