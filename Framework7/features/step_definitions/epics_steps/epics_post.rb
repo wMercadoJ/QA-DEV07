@@ -14,6 +14,5 @@ end
 
 When(/^I send an? epic POST request to \/(:?projects)\/(\d+)\/(:?epics) endpoint$/) do |project_endpoint,id_project, epic_endpoint|
   endpoint="/#{project_endpoint}/#{@id_project}/#{epic_endpoint}"
-  p @epic_json
   @status_code, @response = EpicPost.epic_post(@client,endpoint,[],@epic_json)
 end

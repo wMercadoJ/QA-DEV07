@@ -91,10 +91,7 @@ end
 And(/^I send a (invalid|valid) name (.*) and (invalid|valid) id_project (.*)$/) do |_, name, _, id_project|
 
   values = id_project.gsub(/(^\[)|(\]$)/,'')
-  p values
   array_id_project = [values.to_i]
-  p values.to_i
-  p array_id_project
 
   (values == '') ? (para_json = {:name => name}) : (para_json = {:name => name, :project_ids => array_id_project})
   begin

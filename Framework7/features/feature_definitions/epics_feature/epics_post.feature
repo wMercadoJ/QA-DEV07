@@ -14,7 +14,7 @@ Feature: post epics
     And I have the next epic as JSON:
     """
     {
-      "name":"Post example hsh"
+      "name":"Post example hs11h"
     }
     """
     When I send an epic POST request to /projects/1600911/epics endpoint
