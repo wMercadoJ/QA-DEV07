@@ -2,21 +2,26 @@ require_relative '../../src/data/project_details'
 
 class ProjectDetailsGet
   def self.call_and_return_response(client, url_end_point)
-    url_elements = url_end_point
-    #     %w/
-    #   projects 1595901
-    # /
-     url_elements
+    url_elements = '/projects/1598453'
+      #     %w/
+      #   projects 1598453
+      # /
+    # [url_end_point, '1601011']
+
+    p url_elements
     status_code, response_body = client.get(url_elements)
     project_details = ProjectDetails.new(response_body)
-
+    project_details.validate_fields_symbol
     [status_code, project_details]
   end
 
   def self.validate_project_details(client, url_end_point)
-    status_code, project_details = self.call_and_return_response(client, url_end_point)
-     status_code
-     project_details.id
+    p url_end_point
+    status_code,project_details = self.call_and_return_response(client, url_end_point)
+   #  p project_details
+     status_validation = project_details.validate_fields
+
+    # Validations
 
   end
 
@@ -69,7 +74,7 @@ class ProjectDetailsGet
     false
   end
   def self.validate_boolean(type_boolean)
-    if type_boolean.kind_of?(Bolean)
+    if type_boolean.is_a?(TrueClass) || type_boolean.is_a?(FalseClass)
       return true
     end
     false
@@ -78,6 +83,22 @@ class ProjectDetailsGet
   def self.validate_int(type_int)
     return true if type_int.kind_of?(Integer)
     false
+  end
+
+  def self.validate_time_zone(type_zone)
+    type_zone.each_pair do |field, value|
+      case
+        when field == 'kind'
+          value.equal?('time_zone')
+        when field == 'olson_name'
+          value.to_s =~ (/^[A-Z]([a-z])+\/[A-Z]([a-z])+_[A-Z]([a-z])+$/)
+        when field == 'offset'
+          value.to_s =~(/^(\+|\-)(0[1-9]|1[0-4]):(0[0-9]|[1-5][0-9])/)
+        else
+          puts '%s field was not found ' % field
+          false
+      end
+    end
   end
 
 end
