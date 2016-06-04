@@ -1,6 +1,6 @@
 require_relative '../../../src/helpers/rest_client/api_rest_client'
 require_relative '../../../src/data/comments'
-require_relative '../../../src/requests/validate'
+#require_relative '../../../src/requests/validate'
 
 When(/^I send a GET request to (\/projects\/1596603\/stories\/120320037\/comments)$/) do |end_point|
   @end_point = end_point.length
@@ -77,5 +77,13 @@ Then(/^I should receive true as an answer for (\w+) values/) do |type_of_answer|
   end
 end
 
+
+When(/^I send a GET request to (\/projects\/1596603\/stories\/120320037\/comments\/135075719)$/) do
+  
+end
+
+Then(/^I expect bad request (\d+)$/) do |arg1|
+
+end
 
 

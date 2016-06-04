@@ -10,6 +10,7 @@ Feature:Create task
     When I send my POST request to /projects/<project_id>/stories/<story_id>/tasks
     Then I should receive a Object details
 
+
     Examples:
       | project_id | story_id |description_task|
       |1595959| 120240033|Test_test2|
@@ -25,5 +26,6 @@ Feature:Create task
 
     Examples:
       | project_id | story_id |description_task|complete|position|
-      |1595959| 120240033 |Test test test||7|
-      |1595959| 120240033 |Test test test|true|7|
+      |1595959| 120240033 |Test te-stopt||4|
+      |1595959| 120240033 |Create ta position|true|8|
+      |1595959| 120240033 |WilmaRef|true||
