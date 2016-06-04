@@ -1,25 +1,19 @@
 require_relative '../../../src/helpers/rest_client/api_rest_client'
 require_relative '../../../src/data/comments'
-require_relative '../../../src/requests/validate'
+require_relative '../../../src/helpers/validate'
 
 
-Given(/^I have set a connection to pivotal_tracker API service$/) do
-  @client = ApiRestClient.new
+When(/^I send a GET request to (\/projects\/1601145\/stories\/120813473\/comments)$/) do |end_point|
+  @status_request, @json = Validate.converting_to_json(@client.get(end_point))
 end
-When(/^I send a GET request to (\/projects\/1596603\/stories\/120320037\/comments)$/) do |end_point|
-  @end_point = end_point.length
-  @validate = Validate.new
-  @status_request, @json = @validate.converting_to_json(@client.get(end_point))
-end
-When(/^I send a GET request to (\/projects\/1596603\/stories\/120320037\/comments\/135075719)$/) do |end_point|
-
-  @end_point = end_point.length
-  @status_request, @json = @client.get(end_point)
+When(/^I send a GET request$/) do
+  @status_request, @json = Validate.converting_to_json(@client.get('/projects/1601145/stories/120813473/comments'))
+  @end_point = Validate.get_id_comment(@json)
+  @status_request, @json = @client.get(@end_point)
 end
 Then(/^I expect Status code (\d+)$/) do |status|
   expect(status.to_i).to eql(@status_request)
 end
-
 
 And(/^I validate (\w+) parameter of a comment$/) do |integer_value|
   @individual_json = Comments.new(@json)
@@ -82,12 +76,17 @@ Then(/^I should receive true as an answer for (\w+) values/) do |type_of_answer|
 end
 
 
-When(/^I send a GET request to (\/projects\/1596603\/stories\/120320037\/comments\/135075719)$/) do
-  
+When(/^I send a GET request to (\/projects\/1601145\/stories\/120813473\/comments\/787788)$/) do |request|
+  begin
+    @client.get(request)
+  rescue => error
+    @error = error.http_code
+  end
 end
 
-Then(/^I expect bad request (\d+)$/) do |arg1|
 
+Then(/^I expect bad request (\d+)$/) do |bad_request|
+  expect(@error).to eql(bad_request.to_i)
 end
 
 
