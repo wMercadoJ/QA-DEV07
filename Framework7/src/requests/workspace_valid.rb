@@ -10,92 +10,67 @@ class WorkspaceValid
 
     status_code, response_body = client.get(url_elements)
 
-    jsonArray = response_body
-    objArray = JSON.parse(jsonArray)
+    json_array = response_body
+    obj_array = JSON.parse(json_array)
 
-    @hashArray = Array.new()
+    @hash_array = Array.new
 
-    objArray.each do |object|
-
-      @hashArray.push(WorkspaceGet.new(object).to_hash)
-
+    obj_array.each do |object|
+      @hash_array.push(WorkspaceGet.new(object).to_hash)
     end
-
-    #[status_code, workspace_get]
-    [status_code, @hashArray]
+    [status_code, @hash_array]
   end
 
-  def self.validate_workspace_details(client)
+  def self.validate_workspace_values(workspace_to_valid)
+    workspace_values = workspace_to_valid
 
-    status_code, workspace_get = self.call_and_return_response(client)
+    fail_hash = Hash.new
 
-   # puts "status_code #{status_code}"
-   # puts "workspaces #{workspace_get}"
+    (!(self.my_kind(workspace_values[:kind])))?(fail_hash[:kind] = 'false'):()
+    (!(self.my_id_workspace(workspace_values[:id])))?(fail_hash[:id] = 'false'):()
+    (!(self.my_name_workspace(workspace_values[:name])))?(fail_hash[:name] = 'false'):()
+    (!(self.my_person_id(workspace_values[:person_id])))?(fail_hash[:person_id] = 'false'):()
+    (!(self.my_projects_ids(workspace_values[:project_ids])))?(fail_hash[:project_ids] = 'false'):()
 
-     # Validations
+    validate_hash_fail(fail_hash)
+  end
 
-    #((self.validate_workspace_values(workspace_get)) == (true)) ? (p "Valid json") : (p "Invalid json")
+  def self.validate_hash_fail(fail_hash)
+    my_fails_hash = Hash.new(fail_hash)
+    return my_fails_hash
+  end
+
+  def self.my_kind(kind)
+
+    (kind.kind_of?(String) && kind.length <= 25)?(return true):(return false)
 
   end
 
-    def self.validate_workspace_values(workspace_to_valid)
-      workspace_values = workspace_to_valid
+  def self.my_id_workspace(id)
 
-      failHash = Hash.new
+    (id.kind_of?(Integer) && id.to_s.length <= 7)?(return true):(return false)
 
-      (!(self.myKind(workspace_values[:kind])))?(failHash[:kind] = 'false'):()
-      (!(self.myIdWorkspace(workspace_values[:id])))?(failHash[:id] = 'false'):()
-      (!(self.myNameWorkSpace(workspace_values[:name])))?(failHash[:name] = 'false'):()
-      (!(self.myPersonId(workspace_values[:person_id])))?(failHash[:person_id] = 'false'):()
-      (!(self.myProjectsIds(workspace_values[:project_ids])))?(failHash[:project_ids] = 'false'):()
+  end
 
-    validate_hash_fail(failHash)
+  def self.my_name_workspace(name)
+
+    (name.kind_of?(String) && name.length <= 25)?(return true):(return false)
+
+  end
+
+  def self.my_person_id(person_id)
+
+    (person_id.kind_of?(Integer) && person_id.to_s.length <= 7)?(return true):(return false)
+
+  end
+
+  def self.my_projects_ids(project_id)
+
+    @flag = true
+    project_id.each do |value|
+      (value.kind_of?(Integer) && value.to_s.length <= 7)?(@flag = true):(@flag = false)
     end
-
-  def self.validate_hash_fail(failHash)
-    my_fails_hash = Hash.new(failHash)
-
-     # if my_fails_array.empty?
-     #   return true
-     # else
-     #   return false
-     #   #envio de hash al reporte
-     # end
-my_fails_hash
+    return @flag
   end
 
-      def self.myKind(kind)
-
-         (kind.kind_of?(String) && kind.length <= 25)?(return true):(return false)
-
-      end
-
-      def self.myIdWorkspace(id)
-
-        (id.kind_of?(Integer) && id.to_s.length <= 7)?(return true):(return false)
-
-      end
-
-      def self.myNameWorkSpace(name)
-
-        (name.kind_of?(String) && name.length <= 25)?(return true):(return false)
-
-      end
-
-      def self.myPersonId(person_id)
-
-        (person_id.kind_of?(Integer) && person_id.to_s.length <= 7)?(return true):(return false)
-
-      end
-
-      def self.myProjectsIds(project_id)
-
-        @flag = true
-        project_id.each do |value|
-        (value.kind_of?(Integer) && value.to_s.length <= 7)?(@flag = true):(@flag = false)
-        end
-
-        return @flag
-      end
-
-  end
+end
