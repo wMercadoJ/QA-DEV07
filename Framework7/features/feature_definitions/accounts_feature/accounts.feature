@@ -46,3 +46,4 @@ Feature: Manage accounts
     When I send a GET request to /account_summaries?with_permission=project_creation endpoint
     Then I expect status code 200
     And I expect true as result of fields validations
+

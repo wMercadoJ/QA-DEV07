@@ -1,6 +1,10 @@
 require_relative '../../../src/helpers/rest_client/api_rest_client'
 require_relative '../../../src/data/comments'
+<<<<<<< HEAD
 #require_relative '../../../src/requests/validate'
+=======
+require_relative '../../../src/helpers/validate'
+>>>>>>> 6413287b0981dda2a87fee5f42f81a09f5c3cbbf
 
 When(/^I send a GET request to (\/projects\/1596603\/stories\/120320037\/comments)$/) do |end_point|
   @end_point = end_point.length
