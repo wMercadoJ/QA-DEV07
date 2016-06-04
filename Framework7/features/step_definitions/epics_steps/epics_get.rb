@@ -27,7 +27,7 @@ Then(/^I expect (true|false) as result of epics? fields? validations?$/) do |is_
     steps %Q{
       I send an epic GET request to /projects/#{epic.label['project_id']}/epics/#{epic.id} endpoint
     }
-    expect(epic.validate_field).to be Epic::BOOLEAN_VALUES.fetch(is_validated)
+    expect(epic.validate_fields).to be Epic::BOOLEAN_VALUES.fetch(is_validated)
   end
 
 end
