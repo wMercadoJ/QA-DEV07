@@ -101,7 +101,7 @@ Feature: Final Project for Ruby class
       | Project_Home25|
       | Project_Home26|
 
-  @negative_test
+  @functional_test
   Scenario Outline:  POST request with params week_start_day
     Given I have set a connection to pivotal_tracker API service
     When I send whit different values a POST request to /projects with name project <nameProject> week start day <start_day>
