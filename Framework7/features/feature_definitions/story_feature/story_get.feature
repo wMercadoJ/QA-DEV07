@@ -11,7 +11,7 @@ Feature: Story
 
     Examples:
       | project_id  |story_id    |
-      | 1595957     |120881751   |
+      | 1595957     |120881765   |
 
   @functional_test
   Scenario Outline: Details Story
@@ -24,7 +24,7 @@ Feature: Story
 
     Examples:
       | project_id |story_id  |
-      | 1595957    |120881751   |
+      | 1595957    |120881765   |
 
   @negative_test
   Scenario Outline: Get Story with string ID
