@@ -1,6 +1,7 @@
 require_relative '../../src/data/comments'
 require 'json'
 class Validate
+
   def self.converting_to_json(json_object)
     @status_request, @json=json_object
     @hash_json = JSON.parse(@json)
@@ -38,7 +39,6 @@ class Validate
     end
     pi = Random.rand(0...(@id_comments.length-1))
     end_point = '/projects/1601145/stories/120813473/comments/'+@id_comments[pi].to_s
-
     return end_point
   end
 end
