@@ -15,7 +15,7 @@ end
 
 When(/^I send a PUT request to story endpoint (.*)$/) do |end_point|
   begin
-    @status_code, @response = @client.put(end_point,[],{"name":@name_story})
+    @status_code, @response = @client.put(end_point,[],{"name"=>@name_story})
   rescue Exception => e
     @error = e.http_code
   end
