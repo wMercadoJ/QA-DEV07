@@ -1,21 +1,17 @@
 @epics @api_test
-Feature: post epics
+Feature: delete epics
   As a user
-  i want to add new epics to my project
+  i want to delete epics of my project
   because i need to make it easier to plan and track progress of large features at a high level
 
   Background: set connection to pivotal tracker API REST
     Given I have set a connection to pivotal_tracker API service
 
-  @epics @smoke_test
-  Scenario: create a new epic
+  @epics @smoke_test @epic_delete
+  Scenario: delete a  epic
     Given I have a project created on pivotal tracker
     And I have the id of that project
-    And I have the next epic as JSON:
-    """
-    {
-      "name":"Post example hs11h"
-    }
-    """
-    When I send an epic POST request to /projects/1600911/epics endpoint
-    Then I expect status code 200
+    And I have the epic id to delete
+    When I send an epic DELETE request to epics endpoint
+    Then I expect a delete status code 204
+

@@ -9,7 +9,7 @@ Feature: Final Project for Ruby class
     Examples:
       | idProjects | name |
       | 1598453     |   getProject  |
-  @functional
+  @functional_test
   Scenario Outline: Create Tasks new Project
   Given I have set a connection to pivotal_tracker API service
   When I send a POST request to /projects with name project <nameProject>
@@ -20,7 +20,7 @@ Feature: Final Project for Ruby class
     | nameProject |
     | Project_Home12 |
 
-  @SmokeTest
+  @smoke_test
   Scenario Outline: GET request
     Given I have set a connection project to pivotal_tracker API service
     When I send a GET request the projects to /projects/<idProjects>
@@ -28,7 +28,7 @@ Feature: Final Project for Ruby class
   Examples:
     | idProjects |
     | 1598453    |
-  @SmokeTest
+  @smoke_test
   Scenario Outline: : POST request with params
     Given I have set a connection to pivotal_tracker API service
     When I send a POST request to /projects with name project <nameProject>
@@ -41,8 +41,7 @@ Feature: Final Project for Ruby class
   | Project_Home3 |
   | Project_Home4 |
 
-
-  @SmokeTest
+  @smoke_test
   Scenario: Delete request with params
     Given I have set a connection to pivotal_tracker API service
     And I have have  least one project create in /projects/
@@ -50,7 +49,7 @@ Feature: Final Project for Ruby class
     Then I expect Status the projects code 204
 
 
-  @functional
+  @functional_test
   Scenario Outline: Verified that kind have value equals a project
       Given I have set a connection project to pivotal_tracker API service
       When I send a GET request the projects to /projects/<idProjects>
@@ -60,7 +59,7 @@ Feature: Final Project for Ruby class
     | idProjects |
     | 1598453    |
 
-  @functional
+  @functional_test
   Scenario Outline: Verified that name have length 50
     Given I have set a connection project to pivotal_tracker API service
     When I send a GET request the projects to /projects/<idProjects>
@@ -69,7 +68,7 @@ Feature: Final Project for Ruby class
     Examples:
       | idProjects |
       | 1598453    |
-  @functional
+  @functional_test
   Scenario: Validate project attributes
     Given I have set a connection project to pivotal_tracker API service
     When I send a GET request the projects to /projects/1598453
@@ -82,12 +81,38 @@ Feature: Final Project for Ruby class
       | iteration_length     | String |
       | week_start_day     | date |
 
-  @functional
+  @functional_test
   Scenario: Validate project attributes id size
     Given I have set a connection project to pivotal_tracker API service
     When I send a GET request the projects to /projects/1598453
     Then I expect Status the projects code 200
     And I expect the project should id have less than 7 characters:
+
+  @smoke_test
+  Scenario Outline: : Validate values project
+    Given I have set a connection to pivotal_tracker API service
+    When I send a POST request to /projects with name project <nameProject>
+    Then I expect Status the projects code 200
+    And I expect validate the values of the projects return by request
+
+    Examples:
+      | nameProject |
+      | Project_Home24|
+      | Project_Home25|
+      | Project_Home26|
+
+  @functional_test
+  Scenario Outline:  POST request with params week_start_day
+    Given I have set a connection to pivotal_tracker API service
+    When I send whit different values a POST request to /projects with name project <nameProject> week start day <start_day>
+    Then I expect Status the projects code 200
+    And I expect validate the values of the projects return by request
+
+    Examples:
+      | nameProject |start_day|
+      |  Project 1|  sunday         |
+      |  Project 2|   monday        |
+
 
 
 

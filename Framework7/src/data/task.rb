@@ -11,17 +11,16 @@ class TaskDetails < BaseClassForDataClasses
                 :story_id,
                 :created_at,
                 :updated_at
-
                 @hash = Hash.new
   def initialize(values = {})
     super(values)
   end
 
-  def to_hash
+  def to_hash_task
     @hash = self.instance_variables.each_with_object({}){|var, hash| hash[var.to_s.delete('@')] = self.instance_variable_get(var)}
   end
 
-  def field_valid(field, value)
+  def field_valid_task (field, value)
     case
       when field == 'kind'
         TYPE_VALUE.include?(value)
@@ -38,35 +37,13 @@ class TaskDetails < BaseClassForDataClasses
     end
   end
 
-  def validate_fields
+  def validate_fields_task
     validate_status = true
     object_hash = self.to_hash
     object_hash.each_pair do |key, value|
-      validate_status = self.field_valid(key, value) && validate_status
+      validate_status = self.field_valid_task(key, value) && validate_status
     end
     validate_status
-  end
-  def boolean_data data
-    (data == '')? (return nil):()
-    (data == 'true')? (return true):()
-    (data == 'false')? (return false):()
-  end
-
-  def store_hash_data description, complete, position
-    @name_task = description
-    @boolean = complete
-    @position = position
-    @hash_json = Hash.new
-
-    case
-      when !@name_task.nil?
-        @hash_json.store('description',@name_task)
-      when !@boolean.nil?
-        @hash_json.store('complete',@boolean)
-      when !@position.nil?
-        @hash_json.store('position',@position)
-    end
-    return @hash_json
   end
 
   end
