@@ -3,7 +3,6 @@ require_relative '../../../src/data/comments'
 require_relative '../../../src/helpers/validate'
 
 
-
 When(/^I send a GET request to (\/projects\/1601145\/stories\/120813473\/comments)$/) do |end_point|
   @status_request, @json = Validate.converting_to_json(@client.get(end_point))
 end
