@@ -1,6 +1,8 @@
 require_relative '../../../src/helpers/rest_client/api_rest_client'
 require_relative '../../../src/data/project_details'
+require_relative '../../../src/data/error_details'
 require_relative '../../../../Framework7/src/requests/project_details_get'
+require 'json'
 
 
 Then(/^I expect Status the projects code (\d+)$/) do |http_code|
@@ -39,27 +41,35 @@ When(/^I a Delete the project (.*) in request the projects to (\/projects)$/) do
 end
 
 When(/^I send a POST request to (\/projects) with name project (.*)$/) do |end_point, nameProject|
-
+begin
   json = { :name => nameProject, :public => true }
   @status_code, @response = @client.post(end_point, [], json)
   @end_point_post = end_point
   project_details = ProjectDetails.new(@response)
   id_deletes=Hash.new
   id_deletes.store(project_details.id, project_details.name)
+  @validate_post = project_details.validate_fields_symbol
+
   delete_projects(id_deletes,end_point)
+rescue => error
+  @status_code = error.http_code
+  JSON.parse(error.response)
+  @project_details = Error_details.new( JSON.parse(error.response))
+  end
 end
 
 When(/^I a Delete the project  in request the projects to (\/projects\/.*)$/) do |end_point|
 
-   @status_code, @response = @client.delete("/#{end_point}/#{@id_delete}")
+  code, @response = @client.delete("/#{end_point}/#{@id_delete}")
+  @status_code = code.to_i
 end
 
 And(/^I expect JSON for the name project equal a (.*)$/) do |name_project|
 #  MeDetailsGet.validate_project_details(@client)
   project_details = ProjectDetails.new(@response)
   expect(project_details.name).to eql(name_project.to_s)
-  # @end_point_post = @end_point_post +'/'+ project_details.id
-  # @client.delete(@end_point_post)
+# @end_point_post = @end_point_post +'/'+ project_details.id
+# @client.delete(@end_point_post)
 end
 
 And(/^I expect name project is less than (\d+) letters$/) do |size_word|
@@ -91,7 +101,7 @@ And(/^I have have  least one project create in (\/projects\/)$/) do |end_point|
   project_details = ProjectDetails.new(response)
   @id_delete = project_details.id
 
-  @id_delete
+ p @id_delete
 end
 
 
@@ -101,4 +111,43 @@ end
 
 And(/^I expect the project should id have less than (\d+) characters:$/) do |size|
   expect(true).to eql(ProjectDetailsGet.validate_word_length(@project_details.id, size))
+end
+
+And(/^I expect validate the values of the projects return by request$/) do
+  expect(true).to eql(@validate_post)
+end
+
+When(/^I send a GET request the projects not exist to \/projects\/(.*)$/) do |end_point|
+  @end_point = end_point
+  begin
+    @status_code, @response = @client.get(end_point)
+    @project_details = ProjectDetails.new(@response)
+  rescue => error
+    @status_code = error.http_code
+    JSON.parse(error.response)
+    @project_details = Error_details.new( JSON.parse(error.response))
+  end
+
+end
+
+And(/^I expect the error message that the project not exist$/) do
+  expect(true).to eql(@project_details.validate_fields_symbol)
+end
+
+When(/^I send whit different values a POST request to (\/projects) with name project (.*) week start day (.*)$/) do |end_point, nameProject, start_day|
+  begin
+    json = { :name => nameProject, :public => true, :week_start_day => start_day}
+    @status_code, @response = @client.post(end_point, [], json)
+    @end_point_post = end_point
+    project_details = ProjectDetails.new(@response)
+    id_deletes=Hash.new
+    id_deletes.store(project_details.id, project_details.name)
+    @validate_post = project_details.validate_fields_symbol
+
+    delete_projects(id_deletes,end_point)
+  rescue => error
+    @status_code = error.http_code
+    JSON.parse(error.response)
+    @project_details = Error_details.new( JSON.parse(error.response))
+  end
 end
