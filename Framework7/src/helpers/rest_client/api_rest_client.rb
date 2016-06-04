@@ -32,8 +32,10 @@ class ApiRestClient
     args.store(:method, rest_method)
     args.store(:url, url)
     args.store(:timeout, @time_out)
-    # args.store(:proxy, 'http://172.20.240.5:8080')
-    headers = {'X-TrackerToken' => @token, 'Content-Type' => 'application/json'}
+    headers = {
+        'content-type' => 'application/json',
+        'X-TrackerToken' => @token
+    }
     if parameters.nil?
       parameters_json = nil
     else
@@ -50,7 +52,7 @@ class ApiRestClient
     RestClient.proxy = "http://172.20.240.5:8080"
     response = RestClient::Request.execute(args)
     # Don't parse as Json if empty.
-    return response if response == ''
+    return response.code if response == ''
     begin
       parser = JSON::Ext::Parser.new(response)
       json = parser.parse

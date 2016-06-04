@@ -1,6 +1,6 @@
 class BaseClassForDataClasses
 
-  KIND_VALUES = %w(me account workspace project error)
+  KIND_VALUES = %w(me account workspace project error account_summary label epic)
   WEEK_DAY = %w(Sunday Monday Tuesday Wednesday Thursday Friday Saturday)
   ERROR_VALUES = ["invalid_parameter",
                   "One or more request parameters was missing or invalid.",
@@ -15,6 +15,8 @@ class BaseClassForDataClasses
                   "Name can't be blank",
                   "You cannot add project id 0 to your workspace, either you are not a member or the project doesn't exist.",
                   "'week_start_day' must be one of: sunday, monday, tuesday, wednesday, thursday, friday, saturday"]
+  STATUS_VALUES=%w(active inactive)
+  PLAN_VALUES=['Free', 'Pro M', 'Enterprise Unlimited (Invoiced)']
 
   def initialize(values)
     case

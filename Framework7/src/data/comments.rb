@@ -1,6 +1,8 @@
-# require_relative 'base_class_for_data_classes'
-# require_relative '../../src/requests/validate'
-# require_relative '../../src/helpers/rest_client/api_rest_client'
+
+require_relative 'base_class_for_data_classes'
+require_relative '../../src/requests/validate'
+require_relative '../../src/helpers/rest_client/api_rest_client'
+
 class Comments < BaseClassForDataClasses
   attr_accessor :Kind,
                 :id,
