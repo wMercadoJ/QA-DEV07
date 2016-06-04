@@ -12,7 +12,7 @@ Feature: Story
 
     Examples:
       | project_id  |story_id    |
-      | 1595957     |120881751   |
+      | 1595957     |120882757   |
 
   @negative_test
   Scenario Outline: Delete nonexistent story
