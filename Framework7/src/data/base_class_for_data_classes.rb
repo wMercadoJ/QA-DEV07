@@ -1,5 +1,5 @@
 class BaseClassForDataClasses
-  KIND_VALUES=%w(account workspace account_summary)
+  KIND_VALUES=%w(account workspace account_summary label epic)
   STATUS_VALUES=%w(active inactive)
   PLAN_VALUES=['Free', 'Pro M', 'Enterprise Unlimited (Invoiced)']
   def initialize(values)
