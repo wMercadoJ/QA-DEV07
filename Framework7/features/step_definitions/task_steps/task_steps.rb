@@ -56,8 +56,12 @@ When(/^I send my (POST|GET) request to (.*) for Task/) do |method_task, end_poin
     hash['description'] = @description_task unless @description_task.nil?
     hash['complete'] = @complete_boolean unless @complete_boolean.nil?
     hash['position'] = @position_task unless @position_task.nil? || @position_task == 0
-
+    begin
     @status_task, @response_task = @client_task.post(end_point, [], hash)
+    rescue => error
+      error.response
+      @status2 = error.http_code
+      end
 
   end
 end
