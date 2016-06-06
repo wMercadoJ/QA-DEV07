@@ -1,4 +1,4 @@
-Feature: Final Project for Api Test
+Feature: Get Workspace
 
   @smock_test
   Scenario: All workspace details without to send any value
