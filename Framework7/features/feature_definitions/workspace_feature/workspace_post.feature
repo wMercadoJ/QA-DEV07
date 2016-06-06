@@ -1,4 +1,4 @@
-Feature: Final Project for Api Test
+Feature: Post Workspace
 
   @smock_test
   Scenario Outline: Status code 200 when create new Workspace with name only
