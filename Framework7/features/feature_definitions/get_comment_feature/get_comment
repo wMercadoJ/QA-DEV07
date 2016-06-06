@@ -1,5 +1,5 @@
 @getting_comments
-  Feature: Get comments from a Story
+  Feature: Get Comments
 
     @test_1
     Scenario: getting comments from a User Story
