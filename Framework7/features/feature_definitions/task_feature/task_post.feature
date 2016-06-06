@@ -28,8 +28,8 @@ Feature:Create task
       | project_id | story_id |description_task|complete|position|
       |1601613|120861243 |Test rules|||
       |1601613|120861243 |Test task|||
-      |1601613|120861243 |Perform a----------- list of task||4|
-      |1601613|120861243 |Create uuuuuuuu position for Task|True|2|
+      |1601613|120861243 |Perform a----------- list of task||14|
+      |1601613|120861243 |Create uuuuuuuu position for Task|True|12|
       |1601613|120861243|See you later * **  4|True||
 
   @negative_test
