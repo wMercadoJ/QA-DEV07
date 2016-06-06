@@ -1,5 +1,5 @@
 @getting_comments
-Feature: Get comments from a Story
+Feature: Get Comments
 
   Background: Connection
     Given I have set a connection to pivotal_tracker API service
