@@ -46,4 +46,16 @@ class TaskDetails < BaseClassForDataClasses
     validate_status
   end
 
+  def self.get_id_task(json_array_task)
+    @id_tasks = Array.new
+      json_array_task
+      json_array_task.each_index do |index|
+       id = json_array_task[index]
+      @id_tasks.push(id['id'])
+    end
+    pi = Random.rand(0...(@id_tasks.length-1))
+    end_point = '/projects/1601613/stories/120861243/tasks/'+@id_tasks[pi].to_s
+    return end_point
+  end
+
   end
