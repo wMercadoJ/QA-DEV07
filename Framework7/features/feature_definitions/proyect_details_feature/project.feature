@@ -1,4 +1,4 @@
-Feature: Final Project for Ruby class
+Feature: Post Project
 
   @functional
   Scenario Outline: I get one project

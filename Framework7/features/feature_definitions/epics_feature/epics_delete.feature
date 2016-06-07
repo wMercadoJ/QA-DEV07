@@ -1,5 +1,5 @@
 @epics @api_test
-Feature: delete epics
+Feature: Delete Epics
   As a user
   i want to delete epics of my project
   because i need to make it easier to plan and track progress of large features at a high level

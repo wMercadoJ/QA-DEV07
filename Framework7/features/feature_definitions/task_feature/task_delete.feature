@@ -10,5 +10,6 @@ Feature:Delete task
 
 
     Examples:
+
       | project_id | story_id |
       |1601613|120861243|

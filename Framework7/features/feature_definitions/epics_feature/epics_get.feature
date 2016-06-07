@@ -1,5 +1,5 @@
 @epics @api_test
-Feature: GET epic information
+Feature: Get Epic
   As a user
   I want to get  information of the epics
   Because i need to know the values of each property

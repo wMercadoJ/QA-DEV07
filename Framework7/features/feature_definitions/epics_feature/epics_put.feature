@@ -1,5 +1,5 @@
 @epics @api_test
-Feature: Update epic information
+Feature: Update Epic
   As a user
   I want to update information of  epics
   Because i need fix some mistakes or miss spells on field values
