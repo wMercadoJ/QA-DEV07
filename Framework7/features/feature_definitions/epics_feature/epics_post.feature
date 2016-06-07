@@ -1,5 +1,5 @@
 @epics @api_test
-Feature: post epics
+Feature: Post Epic
   As a user
   i want to add new epics to my project
   because i need to make it easier to plan and track progress of large features at a high level

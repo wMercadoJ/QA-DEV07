@@ -1,5 +1,5 @@
 @accounts @api_test
-Feature: Manage accounts
+Feature: Get Accounts
   Retrieving account resources via this endpoint is restricted to Owners and Administrators for the Account specified. Non authorized users will receive an error.
 
   Background: set connection to pivotal tracker API REST
