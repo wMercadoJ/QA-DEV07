@@ -1,18 +1,18 @@
 @story
-Feature: Story
+Feature: Delete Story
   Background: Connection to pivotal tracker API REST
     Given I have set a connection to pivotal_tracker API service
 
   @smoke_test @functional_test
   Scenario Outline: Delete a Story by ID
     Given I have <project_id> of pivotal tracker project to story delete endpoint
-    When I have the <story_id> ID of a Story to delete it
-    And I send a DELETE request to story endpoint /projects/<project_id>/stories/<story_id>
+    When I have the new_story_id of a new Story to delete it
+    And I send the DELETE request to story delete endpoint /projects/<project_id>/stories/
     Then I should expect the status code 204 to Story delete endpoint
 
     Examples:
-      | project_id  |story_id    |
-      | 1595957     |120963221 |
+      | project_id  |
+      | 1595957     |
 
   @negative_test
   Scenario Outline: Delete nonexistent story

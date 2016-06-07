@@ -1,5 +1,5 @@
 @story
-Feature: Story
+Feature: Put Story
 
   @smoke_test
   Scenario Outline: Updates a Story by ID

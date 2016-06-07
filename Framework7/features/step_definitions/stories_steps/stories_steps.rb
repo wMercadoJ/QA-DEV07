@@ -14,7 +14,7 @@ When /^I send a POST request to (.*) to Stories endpoint$/ do |end_point|
   begin
     @status_code, @response = @client.post(end_point, [], {:name => @name_story})
   rescue Exception => e
-    p @error = e.http_code
+    @error = e.http_code
   end
 end
 
@@ -33,7 +33,7 @@ When(/^I send the GET request to (.*) to Stories endpoint$/) do |end_point|
   begin
     @status_code, @response = @client.get(end_point)
   rescue Exception => e
-    p @error = e.http_code
+    @error = e.http_code
     #error.response
   end
 end
