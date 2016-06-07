@@ -1,13 +1,12 @@
-@delete_a_comment
 Feature: Delete a comment of a story
 
-  @delete_comment @smoke_test
+  @smoke_test
   Scenario: Deleting a comment from a user story
     Given I have set another connection to pivotal_tracker API service to delete a comment
     When I send a Delete request
     Then I expect Status code of delete request 204
 
-  @delete_invalid_comment @functional_test
+  @functional_test
   Scenario: Delete a non_existing comment
     Given I have set another connection to pivotal_tracker API service to delete a comment
     When I send a Delete request /projects/1601145/stories/120813473/comments/789987

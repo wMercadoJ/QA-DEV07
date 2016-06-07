@@ -1,10 +1,9 @@
-@put_a_comment_into_a_previous_comment
 Feature: Put comments into a story
 
   Background: Connection
     Given I have set another connection into pivotal_tracker API service
 
-  @update_text_comment @put_comment @smoke
+  @smoke_test
   Scenario: putting a comment request into a User Story
 
     When I send a Put request
@@ -12,7 +11,7 @@ Feature: Put comments into a story
     And I expect that "updating a comment"
 
 
-  @updating_comment @put_comment @functional
+  @functional_test
   Scenario Outline: posting a comment into a story
     When I write a comment with the <max_range_character> character to update a comment
     And I send Put request with the previous text to update a comment

@@ -1,6 +1,6 @@
 Feature: Post Project
 
-  @functional
+  @functional_test
   Scenario Outline: I get one project
     Given I have set a connection project to pivotal_tracker API service
     When I send a GET request the projects to /projects/<idProjects>

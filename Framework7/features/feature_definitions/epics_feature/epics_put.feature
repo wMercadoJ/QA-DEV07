@@ -1,4 +1,3 @@
-@epics @api_test
 Feature: Update Epic
   As a user
   I want to update information of  epics
@@ -6,7 +5,7 @@ Feature: Update Epic
 
   Background: set connection to pivotal tracker API REST
     Given I have set a connection to pivotal_tracker API service
-    @epics @smoke_test
+    @smoke_test
     Scenario: Update epic
       Given I have a project created on pivotal tracker
       And I have the id of that project

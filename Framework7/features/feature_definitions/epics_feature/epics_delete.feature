@@ -1,4 +1,3 @@
-@epics @api_test
 Feature: Delete Epics
   As a user
   i want to delete epics of my project
@@ -7,7 +6,7 @@ Feature: Delete Epics
   Background: set connection to pivotal tracker API REST
     Given I have set a connection to pivotal_tracker API service
 
-  @epics @smoke_test @epic_delete
+  @smoke_test
   Scenario: delete a  epic
     Given I have a project created on pivotal tracker
     And I have the id of that project

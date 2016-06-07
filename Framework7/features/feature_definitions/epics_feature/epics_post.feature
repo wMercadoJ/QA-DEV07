@@ -1,4 +1,3 @@
-@epics @api_test
 Feature: Post Epic
   As a user
   i want to add new epics to my project
@@ -7,7 +6,7 @@ Feature: Post Epic
   Background: set connection to pivotal tracker API REST
     Given I have set a connection to pivotal_tracker API service
 
-  @epics @smoke_test
+  @smoke_test
   Scenario: create a new epic
     Given I have a project created on pivotal tracker
     And I have the id of that project

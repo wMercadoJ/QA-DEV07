@@ -1,4 +1,3 @@
-@story
 Feature: Put Story
 
   @smoke_test

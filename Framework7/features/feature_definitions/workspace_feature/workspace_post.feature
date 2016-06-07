@@ -1,6 +1,6 @@
 Feature: Post Workspace
 
-  @smock_test
+  @smoke_test
   Scenario Outline: Status code 200 when create new Workspace with name only
     Given I have set a connection to pivotal_tracker API service with workspace
     When I send workspace a POST request to /my/workspaces
@@ -11,7 +11,7 @@ Feature: Post Workspace
     |name|id_project|
     |workspace03|[]|
 
-  @smock_test, @functional_test
+  @smoke_test, @functional_test
   Scenario Outline: Status code 200 when create new Workspace with name and projects id
     Given I have set a connection to pivotal_tracker API service with workspace
     When I send workspace a POST request to /my/workspaces

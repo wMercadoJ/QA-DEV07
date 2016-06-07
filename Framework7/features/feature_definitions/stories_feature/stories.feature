@@ -1,4 +1,3 @@
-@stories
   Feature: Stories
     Background: Connection to pivotal tracker API REST
       Given I have set a connection to pivotal_tracker API service

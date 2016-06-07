@@ -1,4 +1,3 @@
-@Task_post
 Feature:Create task
 
 @smoke_test, @functional_test

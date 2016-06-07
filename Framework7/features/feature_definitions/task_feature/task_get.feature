@@ -1,4 +1,3 @@
-@Task_get
 Feature: Get task
   @smoke_test
   Scenario Outline: Get a status task from a story
