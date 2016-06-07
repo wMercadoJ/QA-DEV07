@@ -1,8 +1,8 @@
-Before('@epics') do |scenario|
+Before('@smoke_test','@functional_test','@negative_test') do |scenario|
   puts "Scenario: #{scenario.name}"
 
 end
-After('@epics', '@smoke_test') do |scenario|
+After('@smoke_test','@functional_test','@negative_test') do |scenario|
   if scenario.failed?
     puts  "Failed #{scenario.exception.message}"
   else
@@ -10,11 +10,11 @@ After('@epics', '@smoke_test') do |scenario|
   end
 
 end
-Before('@accounts') do |scenario|
+Before('@smoke_test','@functional_test','@negative_test') do |scenario|
   puts "Scenario: #{scenario.name}"
 end
 
-After('@accounts','@smoke_test') do |scenario|
+After('@smoke_test','@functional_test','@negative_test') do |scenario|
   if scenario.failed?
     puts  "Failed #{scenario.exception.message}"
   else

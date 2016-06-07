@@ -1,6 +1,6 @@
 Feature:Create task
 
-@smoke_test, @functional_test
+@smoke_test @functional_test
   Scenario Outline: Create task in a story with only description
 
     Given I have set a connection to pivotal tracker API service for Task
