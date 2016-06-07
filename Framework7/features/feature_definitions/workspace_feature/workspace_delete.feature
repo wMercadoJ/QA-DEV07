@@ -1,4 +1,4 @@
-Feature: Final Project for Api Test
+Feature: Delete Workspace
 
   @smock_test
   Scenario Outline: Status code 208 when delete new Workspace with name only

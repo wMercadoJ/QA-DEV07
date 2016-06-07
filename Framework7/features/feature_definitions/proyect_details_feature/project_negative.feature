@@ -1,4 +1,4 @@
-Feature: Final Project API
+Feature: Delete Project API
 
   @negative_test
   Scenario Outline: I get project that does not exist
